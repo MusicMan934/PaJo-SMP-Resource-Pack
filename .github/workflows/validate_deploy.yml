@@ -21,15 +21,15 @@ jobs:
           files: resources/
           dest: resources.zip
       - name: 📂 Deploy to Server
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        uses: milanmk/actions-file-deployer@master
         with:
-          username: ${{ secrets.FTP_USERNAME }}
-          server: ${{ secrets.FTP_HOST }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: ${{ secrets.FTP_PORT }}
-          local-dir: './resources.zip'
-          server-dir: '''/1. PaJo SMP/server/'''
-          log-level: verbose
+          remote-protocol: "sftp"
+          remote-user: ${{ secrets.FTP_USERNAME }}
+          remote-host: ${{ secrets.FTP_HOST }}
+          remote-password: ${{ secrets.FTP_PASSWORD }}
+          remote-port: ${{ secrets.FTP_PORT }}
+          local-path: './resources.zip'
+          remote-path: '''/1. PaJo SMP/server/'''
       - name: 🖥️ RCON Connection
         uses: Plagiatus/RCON-Action@v0.2
         with:
