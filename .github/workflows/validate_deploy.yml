@@ -30,6 +30,7 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           local_path: './resources.zip'
           remote_path: '''/1. PaJo SMP/server/'''
+          rsyncArgs: --verbose
       - name: 🖥️ RCON Connection
         uses: Plagiatus/RCON-Action@v0.2
         with:
