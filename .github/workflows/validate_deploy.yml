@@ -1,0 +1,39 @@
+name: validate and push
+on:
+  push:
+    branches:
+      - main
+jobs:
+  validate-zip-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+      - name: 🔎 Validate Resource Pack
+        uses: MrKinau/ResourcePackValidator@v1
+        with:
+          resourcepack: ./resources
+          config: .github/workflows/validate-resource-pack-config.json
+      - name: 👉👈 zip
+        uses: actions/checkout@v2
+      - uses: vimtor/action-zip@v1.2
+        with:
+          files: resources/
+          dest: resources.zip
+      - name: 📂 Deploy to Server
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
+        with:
+          username: ${{ secrets.FTP_USERNAME }}
+          server: ${{ secrets.FTP_HOST }}
+          sftp_only: true
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          local_path: './resources.zip'
+          remote_path: '/server/'
+      - name: 🖥️ RCON Connection
+        uses: Plagiatus/RCON-Action@v0.2
+        with:
+          server: ${{ secrets.RCON_IP }}
+          port: ${{ secrets.RCON_PORT }}
+          password: ${{ secrets.RCON_PASSWORD }}
+          commands: '["reload", "pack set \"http://104.254.131.178:50732\" push"]'

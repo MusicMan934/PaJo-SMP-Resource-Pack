@@ -1,0 +1,21 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "model": "minecraft:item/honey_bottle",
+    "property": "minecraft:component",
+    "component": "minecraft:custom_name",
+    "cases": [
+      {
+        "when": "Honey Beer",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/honey_beer"
+        }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/honey_bottle"
+    }
+  }
+}

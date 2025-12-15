@@ -1,0 +1,21 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "model": "minecraft:item/iron_sword",
+    "property": "minecraft:component",
+    "component": "minecraft:custom_name",
+    "cases": [
+      {
+        "when": "Katana",
+        "model": {
+          "type": "minecraft:model",
+          "model": "minecraft:item/iron_katana"
+        }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/iron_sword"
+    }
+  }
+}
