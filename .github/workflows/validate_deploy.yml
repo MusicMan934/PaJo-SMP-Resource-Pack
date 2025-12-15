@@ -37,4 +37,4 @@ jobs:
           server: ${{ secrets.RCON_IP }}
           port: ${{ secrets.RCON_PORT }}
           password: ${{ secrets.RCON_PASSWORD }}
-          commands: '["reload", "pack set \"http://104.254.131.178:50732\" push"]'
+          commands: '["reload", "pack set \"http://157.85.94.67:26314\" push"]'
