@@ -21,17 +21,15 @@ jobs:
           files: resources/
           dest: resources.zip
       - name: 📂 Deploy to Server
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           username: ${{ secrets.FTP_USERNAME }}
           server: ${{ secrets.FTP_HOST }}
-          sftp_only: true
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
-          local_path: './resources.zip'
-          remote_path: 'Home/server/'
-          rsyncArgs: --verbose
-          sftpArgs: '-o ConnectTimeout=5'
+          local-dir: './resources.zip'
+          server-dir: '''/1. PaJo SMP/server/'''
+          log-level: verbose
       - name: 🖥️ RCON Connection
         uses: Plagiatus/RCON-Action@v0.2
         with:
